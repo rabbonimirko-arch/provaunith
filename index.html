@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Digital Screen Italia · Serena AI</title>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      overflow: hidden;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #fff;
+    }
+
+    header {
+      width: 100%;
+      text-align: center;
+      background: linear-gradient(90deg, #02131e, #033049, #02131e);
+      color: #e6faff;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 12px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(0,180,255,0.3);
+    }
+
+    #ai-wrapper {
+      position: fixed;
+      top: 50px; /* spazio per header */
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: calc(100% - 50px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #000;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 0;
+    }
+
+    /* Ottimizzazione verticale */
+    @media (orientation: portrait) {
+      iframe {
+        width: 100vw;
+        height: 100vh;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>DIGITAL SCREEN ITALIA · SERENA AI</header>
+
+  <div id="ai-wrapper">
+    <iframe 
+      src="https://chat.unith.ai/digitalscreen-1482/serena-22211?api_key=a581b4139da14ad5ac5c945c72e79d48"
+      allow="microphone">
+    </iframe>
+  </div>
+
+</body>
+</html>
