@@ -15,16 +15,12 @@
       background: #000;
       overflow: hidden;
       font-family: "Segoe UI", Arial, sans-serif;
-      color: #fff;
     }
 
-    /* Contenitore avatar fullscreen */
+    /* Contenitore principale full screen */
     #avatar-container {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
       background: #000;
@@ -35,39 +31,42 @@
       align-items: center;
     }
 
+    /* L’iframe generato da PitchAvatar viene forzato full-screen */
+    iframe[src*="pitchavatar"] {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      border: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      background: #000 !important;
+    }
+
     /* Pulsante per aprire la chat */
     #open-chat-btn {
       position: fixed;
       bottom: 20px;
       right: 20px;
       background: linear-gradient(90deg, #0078ff, #00bfff);
-      color: white;
+      color: #fff;
       border: none;
       border-radius: 30px;
       padding: 14px 22px;
       font-size: 1rem;
       font-weight: 600;
-      letter-spacing: 0.5px;
       cursor: pointer;
       z-index: 10;
-      box-shadow: 0px 4px 12px rgba(0,0,0,0.4);
-      transition: all 0.25s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      transition: transform 0.2s ease;
     }
 
     #open-chat-btn:hover {
-      background: linear-gradient(90deg, #00bfff, #0078ff);
       transform: scale(1.05);
     }
 
-    /* Ottimizzazione per schermi verticali */
-    @media (orientation: portrait) {
-      #avatar-container {
-        width: 100vw;
-        height: 100vh;
-      }
-    }
-
-    /* Nasconde eventuale logo PitchAvatar */
+    /* Rimuove qualsiasi logo PitchAvatar */
     .pitchavatar-logo, [class*="pitchavatar-logo"], [id*="pitchavatar-logo"] {
       display: none !important;
       opacity: 0 !important;
@@ -78,7 +77,7 @@
 
 <body>
   <div id="avatar-container">
-    <!-- ✅ Embed PitchAvatar aggiornato -->
+    <!-- ✅ Embed PitchAvatar full-page -->
     <script
       type="module"
       src="https://slides.pitchavatar.com/widget/embed.js"
@@ -91,7 +90,7 @@
   <button id="open-chat-btn">💬 Apri Chat</button>
 
   <script>
-    // Apre la chat su richiesta
+    // Attiva la chat su richiesta
     const openBtn = document.getElementById("open-chat-btn");
     openBtn.addEventListener("click", () => {
       const iframe = document.querySelector("iframe[src*='pitchavatar']");
@@ -100,7 +99,7 @@
       }
     });
 
-    // Rimuove eventuale logo PitchAvatar se presente
+    // Nasconde il logo PitchAvatar se presente
     const hideLogo = () => {
       const logo = document.querySelector('.pitchavatar-logo, [class*="pitchavatar-logo"], [id*="pitchavatar-logo"]');
       if (logo) logo.style.display = 'none';
