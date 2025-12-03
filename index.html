@@ -18,12 +18,7 @@
       color: #fff;
     }
 
-    /* Header disattivato per visuale pulita */
-    header {
-      display: none;
-    }
-
-    /* Contenitore avatar full screen */
+    /* Contenitore avatar fullscreen */
     #avatar-container {
       position: fixed;
       top: 0;
@@ -35,6 +30,9 @@
       background: #000;
       overflow: hidden;
       z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     /* Pulsante per aprire la chat */
@@ -61,38 +59,31 @@
       transform: scale(1.05);
     }
 
-    /* Nascondi logo PitchAvatar */
-    iframe[src*="pitchavatar"] {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    /* Rimuove qualsiasi watermark o logo visibile */
-    .pitchavatar-logo, [class*="pitchavatar-logo"], [id*="pitchavatar-logo"] {
-      display: none !important;
-      opacity: 0 !important;
-      visibility: hidden !important;
-    }
-
-    /* Ottimizzazione verticale per schermi 9:16 */
+    /* Ottimizzazione per schermi verticali */
     @media (orientation: portrait) {
       #avatar-container {
         width: 100vw;
         height: 100vh;
       }
     }
+
+    /* Nasconde eventuale logo PitchAvatar */
+    .pitchavatar-logo, [class*="pitchavatar-logo"], [id*="pitchavatar-logo"] {
+      display: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+    }
   </style>
 </head>
 
 <body>
   <div id="avatar-container">
-    <!-- ✅ Embed PitchAvatar -->
+    <!-- ✅ Embed PitchAvatar aggiornato -->
     <script
       type="module"
       src="https://slides.pitchavatar.com/widget/embed.js"
       data-chat-id="xoehy"
-      data-hide-chat="true">
+      data-full-page-open="true">
     </script>
   </div>
 
@@ -100,7 +91,7 @@
   <button id="open-chat-btn">💬 Apri Chat</button>
 
   <script>
-    // Attiva la chat su richiesta
+    // Apre la chat su richiesta
     const openBtn = document.getElementById("open-chat-btn");
     openBtn.addEventListener("click", () => {
       const iframe = document.querySelector("iframe[src*='pitchavatar']");
@@ -109,12 +100,14 @@
       }
     });
 
-    // Nasconde eventuale logo PitchAvatar se presente in overlay
+    // Rimuove eventuale logo PitchAvatar se presente
     const hideLogo = () => {
       const logo = document.querySelector('.pitchavatar-logo, [class*="pitchavatar-logo"], [id*="pitchavatar-logo"]');
       if (logo) logo.style.display = 'none';
     };
-    setInterval(hideLogo, 1000); // controlla periodicamente per mantenerlo nascosto
+    setInterval(hideLogo, 1000);
   </script>
 </body>
 </html>
+
+
