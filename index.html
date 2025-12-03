@@ -4,16 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Digital Screen Italia · eShop Assistant</title>
-
-  <!-- CSS bundle -->
-  <link rel="stylesheet" href="https://embedded.unith.ai/dist/bundle.css" />
-
-  <!-- Fonts -->
-  <link rel="stylesheet"
-    href="https://gpt-head-assets.unith.ai/fonts/stylesheet.css"
-    media="print"
-    onload="this.media='all'" />
+  <title>Digital Screen Italia · PitchAvatar AI</title>
 
   <style>
     html, body {
@@ -44,60 +35,48 @@
       border-bottom: 1px solid rgba(0,180,255,0.3);
     }
 
-    #talking-head-wrapper {
+    #avatar-container {
       position: fixed;
-      top: 50px; /* spazio per header */
+      top: 50px; /* spazio per l’header */
       left: 0;
       right: 0;
       bottom: 0;
       width: 100%;
       height: calc(100% - 50px);
-      background: #000;
       display: flex;
       justify-content: center;
       align-items: center;
+      background: #000;
+      overflow: hidden;
     }
 
-    /* Il contenitore dell'avatar Unith */
-    #talking-head {
-      width: 100%;
-      height: 100%;
-    }
-
-    /* Ottimizzazione verticale per schermi 9:16 */
+    /* Ottimizzazione per schermi verticali (9:16) */
     @media (orientation: portrait) {
-      #talking-head-wrapper {
+      #avatar-container {
         width: 100vw;
         height: calc(100vh - 50px);
       }
     }
+
+    /* Avatar widget responsive */
+    #pitchavatar-widget {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
   </style>
-
-  <!-- JavaScript bundle -->
-  <script defer src="https://embedded.unith.ai/dist/bundle.js"></script>
-
-  <!-- Microsoft speech recognition bundle -->
-  <script src="https://embedded.unith.ai/microsoft-speech-recognition.js"></script>
 </head>
 
 <body>
-  <header>DIGITAL SCREEN ITALIA · ESHOP ASSISTANT</header>
+  <header>DIGITAL SCREEN ITALIA · PITCHAVATAR</header>
 
-  <div id="talking-head-wrapper">
-    <div
-      id="talking-head"
-      data-api_base="https://chat-origin.api.unith.live"
-      data-api_key="a581b4139da14ad5ac5c945c72e79d48"
-      data-org_id="digitalscreen-1482"
-      data-head_id="eshopassistant-22209"
-      data-theme="demo"
-      data-vm_version="1"
-      data-time_pressure="false"
-      data-subs_enabled="true"
-      data-mic_enabled="true"
-      data-widget_mode="false"
-      data-seamless_transitions="false">
-    </div>
+  <div id="avatar-container">
+    <!-- ✅ Embed ufficiale PitchAvatar -->
+    <script
+      type="module"
+      src="https://slides.pitchavatar.com/widget/embed.js"
+      data-chat-id="xoehy">
+    </script>
   </div>
 </body>
 </html>
