@@ -6,6 +6,15 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Digital Screen Italia · Serena AI</title>
 
+  <!-- CSS bundle -->
+  <link rel="stylesheet" href="https://embedded.unith.ai/dist/bundle.css" />
+
+  <!-- Fonts -->
+  <link rel="stylesheet"
+    href="https://gpt-head-assets.unith.ai/fonts/stylesheet.css"
+    media="print"
+    onload="this.media='all'" />
+
   <style>
     html, body {
       margin: 0;
@@ -35,7 +44,7 @@
       border-bottom: 1px solid rgba(0,180,255,0.3);
     }
 
-    #ai-wrapper {
+    #talking-head-wrapper {
       position: fixed;
       top: 50px; /* spazio per header */
       left: 0;
@@ -43,41 +52,53 @@
       bottom: 0;
       width: 100%;
       height: calc(100% - 50px);
+      background: #000;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #000;
     }
 
-    iframe {
+    /* Il container di Unith prende tutto lo spazio disponibile */
+    #talking-head {
       width: 100%;
       height: 100%;
-      border: none;
-      border-radius: 0;
     }
 
-    /* Ottimizzazione verticale */
+    /* Portrait 9:16 (cellulari / totem verticali) */
     @media (orientation: portrait) {
-      iframe {
+      #talking-head-wrapper {
         width: 100vw;
-        height: 100vh;
+        height: calc(100vh - 50px);
       }
     }
   </style>
+
+  <!-- JavaScript bundle -->
+  <script defer src="https://embedded.unith.ai/dist/bundle.js"></script>
+
+  <!-- Microsoft speech recognition bundle -->
+  <script src="https://embedded.unith.ai/microsoft-speech-recognition.js"></script>
 </head>
 
 <body>
-
   <header>DIGITAL SCREEN ITALIA · SERENA AI</header>
 
-  <div id="ai-wrapper">
-    <iframe 
-   src="https://chat.unith.ai/digitalscreen-1482/serena-22211?api_key=a581b4139da14ad5ac5c945c72e79d48"
-width=900px height=400px allow="microphone"></iframe>
-     
-    </iframe>
+  <div id="talking-head-wrapper">
+    <div
+      id="talking-head"
+      data-api_base="https://chat-origin.api.unith.live"
+      data-api_key="a581b4139da14ad5ac5c945c72e79d48"
+      data-org_id="digitalscreen-1482"
+      data-head_id="serena-22211"
+      data-theme="demo"
+      data-vm_version="1"
+      data-time_pressure="false"
+      data-subs_enabled="true"
+      data-mic_enabled="true"
+      data-widget_mode="false"
+      data-seamless_transitions="false">
+    </div>
   </div>
-
 </body>
 </html>
 
