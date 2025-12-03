@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Digital Screen Italia · PitchAvatar AI</title>
+  <title>Digital Screen Italia · PitchAvatar</title>
 
   <style>
     html, body {
@@ -18,65 +18,103 @@
       color: #fff;
     }
 
+    /* Header disattivato per visuale pulita */
     header {
-      width: 100%;
-      text-align: center;
-      background: linear-gradient(90deg, #02131e, #033049, #02131e);
-      color: #e6faff;
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      padding: 12px 0;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 10;
-      border-bottom: 1px solid rgba(0,180,255,0.3);
+      display: none;
     }
 
+    /* Contenitore avatar full screen */
     #avatar-container {
       position: fixed;
-      top: 50px; /* spazio per l’header */
+      top: 0;
       left: 0;
       right: 0;
       bottom: 0;
       width: 100%;
-      height: calc(100% - 50px);
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      height: 100%;
       background: #000;
       overflow: hidden;
+      z-index: 1;
     }
 
-    /* Ottimizzazione per schermi verticali (9:16) */
-    @media (orientation: portrait) {
-      #avatar-container {
-        width: 100vw;
-        height: calc(100vh - 50px);
-      }
+    /* Pulsante per aprire la chat */
+    #open-chat-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(90deg, #0078ff, #00bfff);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 14px 22px;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      z-index: 10;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.4);
+      transition: all 0.25s ease;
     }
 
-    /* Avatar widget responsive */
-    #pitchavatar-widget {
+    #open-chat-btn:hover {
+      background: linear-gradient(90deg, #00bfff, #0078ff);
+      transform: scale(1.05);
+    }
+
+    /* Nascondi logo PitchAvatar */
+    iframe[src*="pitchavatar"] {
       width: 100%;
       height: 100%;
       border: none;
+    }
+
+    /* Rimuove qualsiasi watermark o logo visibile */
+    .pitchavatar-logo, [class*="pitchavatar-logo"], [id*="pitchavatar-logo"] {
+      display: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+    }
+
+    /* Ottimizzazione verticale per schermi 9:16 */
+    @media (orientation: portrait) {
+      #avatar-container {
+        width: 100vw;
+        height: 100vh;
+      }
     }
   </style>
 </head>
 
 <body>
-  <header>DIGITAL SCREEN ITALIA · PITCHAVATAR</header>
-
   <div id="avatar-container">
-    <!-- ✅ Embed ufficiale PitchAvatar -->
+    <!-- ✅ Embed PitchAvatar -->
     <script
       type="module"
       src="https://slides.pitchavatar.com/widget/embed.js"
-      data-chat-id="xoehy">
+      data-chat-id="xoehy"
+      data-hide-chat="true">
     </script>
   </div>
+
+  <!-- Pulsante per aprire la chat -->
+  <button id="open-chat-btn">💬 Apri Chat</button>
+
+  <script>
+    // Attiva la chat su richiesta
+    const openBtn = document.getElementById("open-chat-btn");
+    openBtn.addEventListener("click", () => {
+      const iframe = document.querySelector("iframe[src*='pitchavatar']");
+      if (iframe) {
+        iframe.contentWindow.postMessage({ action: "openChat" }, "*");
+      }
+    });
+
+    // Nasconde eventuale logo PitchAvatar se presente in overlay
+    const hideLogo = () => {
+      const logo = document.querySelector('.pitchavatar-logo, [class*="pitchavatar-logo"], [id*="pitchavatar-logo"]');
+      if (logo) logo.style.display = 'none';
+    };
+    setInterval(hideLogo, 1000); // controlla periodicamente per mantenerlo nascosto
+  </script>
 </body>
 </html>
